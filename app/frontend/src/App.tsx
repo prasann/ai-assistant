@@ -13,8 +13,6 @@ import useAudioPlayer from "@/hooks/useAudioPlayer";
 
 import { GroundingFile, ToolResult } from "./types";
 
-import logo from "./assets/logo.svg";
-
 function App() {
     const [isRecording, setIsRecording] = useState(false);
     const [groundingFiles, setGroundingFiles] = useState<GroundingFile[]>([]);
