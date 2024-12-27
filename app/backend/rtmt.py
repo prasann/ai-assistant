@@ -9,7 +9,7 @@ from aiohttp import web
 from azure.core.credentials import AzureKeyCredential
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-logger = logging.getLogger("voicerag")
+logger = logging.getLogger("ai-assistant")
 
 class ToolResultDirection(Enum):
     TO_SERVER = 1

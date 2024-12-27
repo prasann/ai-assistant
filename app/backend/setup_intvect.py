@@ -216,10 +216,10 @@ def upload_documents(azure_credential, indexer_name, azure_search_endpoint, azur
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.WARNING, format="%(message)s", datefmt="[%X]", handlers=[RichHandler(rich_tracebacks=True)])
-    logger = logging.getLogger("voicerag")
+    logger = logging.getLogger("ai-assistant")
     logger.setLevel(logging.INFO)
 
-    logger = logging.getLogger("voicerag")
+    logger = logging.getLogger("ai-assistant")
 
     load_azd_env()
 

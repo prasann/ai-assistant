@@ -11,8 +11,15 @@ from ragtools import attach_rag_tools
 from rtmt import RTMiddleTier
 
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("voicerag")
+logger = logging.getLogger("ai-assistant")
 
+@web.middleware
+async def auth_middleware(request, handler):
+    client_principal_name = request.headers.get('X-MS-CLIENT-PRINCIPAL-NAME')
+    if client_principal_name != 'pvenkat4ever@gmail.com':
+        return web.Response(status=403, text='Only Prasanna is allowed to access this page')
+    return await handler(request)
+    
 async def create_app():
     if not os.environ.get("RUNNING_IN_PRODUCTION"):
         logger.info("Running in development mode, loading from .env file")
@@ -32,7 +39,7 @@ async def create_app():
     llm_credential = AzureKeyCredential(llm_key) if llm_key else credential
     search_credential = AzureKeyCredential(search_key) if search_key else credential
     
-    app = web.Application()
+    app = web.Application(middlewares=[auth_middleware])
 
     rtmt = RTMiddleTier(
         credentials=llm_credential,
