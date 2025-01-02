@@ -1,14 +1,15 @@
+from typing import Any
 from azure.search.documents.aio import SearchClient
 from azure.search.documents.models import VectorizableTextQuery
 
 from rtmt import ToolResult, ToolResultDirection
 
-search_tool_schema = {
+personal_info_tool_schema = {
     "type": "function",
-    "name": "search",
-    "description": "Search the knowledge base. The knowledge base is in English, translate to and from English if " + \
-                   "needed. Results are formatted as a source name first in square brackets, followed by the text " + \
-                   "content, and a line with '-----' at the end of each result.",
+    "name": "personal_info",
+    "description": "Search the knowledge base containing personal information. The knowledge base is in English " + \
+                   " translate to and from English if needed. " + \
+                   "there is a line with '-----' at the end of each result.",
     "parameters": {
         "type": "object",
         "properties": {
@@ -22,7 +23,7 @@ search_tool_schema = {
     }
 }
 
-async def search_tool(
+async def personal_info_tool(
     search_client: SearchClient, 
     semantic_configuration: str,
     identifier_field: str,
@@ -46,4 +47,7 @@ async def search_tool(
     result = ""
     async for r in search_results:
         result += f"[{r[identifier_field]}]: {r[content_field]}\n-----\n"
+    print("****** result-start ******")
+    print(result)
+    print("****** result-end ******")
     return ToolResult(result, ToolResultDirection.TO_SERVER)

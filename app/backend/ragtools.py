@@ -1,6 +1,5 @@
 
-from tools.report_grounding_tool import report_grounding_tool, grounding_tool_schema
-from tools.search_tool import search_tool, search_tool_schema
+from tools.personal_info_tool import personal_info_tool, personal_info_tool_schema
 from azure.core.credentials import AzureKeyCredential
 from azure.identity import DefaultAzureCredential
 from azure.search.documents.aio import SearchClient
@@ -21,5 +20,4 @@ def attach_rag_tools(rtmt: RTMiddleTier,
         credentials.get_token("https://search.azure.com/.default") # warm this up before we start getting requests
     search_client = SearchClient(search_endpoint, search_index, credentials, user_agent="RTMiddleTier")
 
-    rtmt.tools["search"] = Tool(schema=search_tool_schema, target=lambda args: search_tool(search_client, semantic_configuration, identifier_field, content_field, embedding_field, use_vector_query, args))
-    rtmt.tools["report_grounding"] = Tool(schema=grounding_tool_schema, target=lambda args: report_grounding_tool(search_client, identifier_field, title_field, content_field, args))
+    rtmt.tools["personal_info"] = Tool(schema=personal_info_tool_schema, target=lambda args: personal_info_tool(search_client, semantic_configuration, identifier_field, content_field, embedding_field, use_vector_query, args))

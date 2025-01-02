@@ -197,9 +197,11 @@ def upload_documents(azure_credential, indexer_name, azure_search_endpoint, azur
     existing_blobs = [blob.name for blob in container_client.list_blobs()]
 
     # Open each file in /data folder
-    for file in os.scandir("data"):
-        with open(file.path, "rb") as opened_file:
-            filename = os.path.basename(file.path)
+    for root, dirs, files in os.walk("data"):
+      for file in files:
+        file_path = os.path.join(root, file)
+        with open(file_path, "rb") as opened_file:
+            filename = os.path.basename(file_path)
             # Check if blob already exists
             if filename in existing_blobs:
                 logger.info("Blob already exists, skipping file: %s", filename)
