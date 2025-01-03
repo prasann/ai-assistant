@@ -1,13 +1,13 @@
 {
     "app": {
-        "title": "Bheemboy at your service 🙇",
+        "title": "Prasanna's digital assistant",
         "footer": "Built with Azure AI Search + Azure OpenAI",
         "stopRecording": "Stop recording",
         "startRecording": "Start recording",
         "stopConversation": "Stop conversation"
     },
     "status": {
-        "notRecordingMessage": "Prasanna's digital assistant",
+        "notRecordingMessage": "can converse in multiple languages!!",
         "conversationInProgress": "Conversation in progress"
     },
     "history": {
