@@ -395,6 +395,19 @@ module openAiRoleSearchService 'core/security/role.bicep' = if (!reuseExistingSe
   }
 }
 
+module cosmosDbProject 'core/datastore/cosmos.bicep' = {
+  name: 'cosmosDbProject'
+  scope: resourceGroup
+  params: {
+    location: location
+    cosmosDbAccountName: 'aias${resourceToken}'
+    databaseName: 'aias${resourceToken}db'
+    containerName: 'aias${resourceToken}cn'
+    containerPartitionKey: '/id'
+    containerThroughput: 400
+  }
+}
+
 output AZURE_LOCATION string = location
 output AZURE_TENANT_ID string = tenantId
 output AZURE_RESOURCE_GROUP string = resourceGroup.name
