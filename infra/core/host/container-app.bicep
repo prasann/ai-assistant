@@ -81,6 +81,9 @@ param targetPort int = 80
 
 param workloadProfile string = 'Consumption'
 
+@description('The Google client ID for authentication')
+param googleClientId string = ''
+
 resource userIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' existing = if (!empty(identityName)) {
   name: identityName
 }
@@ -172,6 +175,25 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
   }
 }
 
+resource appAuth 'Microsoft.App/containerApps/authConfigs@2024-10-02-preview' = {
+  parent: app
+  name: 'current'
+  properties: {
+    identityProviders: {
+      google: {
+        enabled: true
+        login: {
+          scopes: [
+          ]
+        }
+        registration: {
+          clientId: googleClientId
+          clientSecretSettingName: 'google-provider-authentication-secret'
+        }
+      }
+    }
+  }
+}
 resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' existing = {
   name: containerAppsEnvironmentName
 }

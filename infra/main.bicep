@@ -75,6 +75,11 @@ param openAiEndpoint string = ''
 param openAiRealtimeDeployment string = ''
 param openAiRealtimeVoiceChoice string = ''
 
+@secure()
+param googleProviderClientSecret string = ''
+
+param googleProviderClientId string = ''
+
 @description('Location for the OpenAI resource group')
 @allowed([
   'eastus2'
@@ -217,6 +222,10 @@ module acaBackend 'core/host/container-app-upsert.bicep' = {
       // For using managed identity to access Azure resources. See https://github.com/microsoft/azure-container-apps/issues/442
       AZURE_CLIENT_ID: acaIdentity.outputs.clientId
     }
+    secrets:  {
+      'google-provider-authentication-secret': googleProviderClientSecret
+    }
+    googleClientId: googleProviderClientId
   }
 }
 
