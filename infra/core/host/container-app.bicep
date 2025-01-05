@@ -176,9 +176,11 @@ resource app 'Microsoft.App/containerApps@2023-05-02-preview' = {
 }
 
 resource appAuth 'Microsoft.App/containerApps/authConfigs@2024-10-02-preview' = {
+
   parent: app
   name: 'current'
   properties: {
+    platform: {enabled: true}
     identityProviders: {
       google: {
         enabled: true
