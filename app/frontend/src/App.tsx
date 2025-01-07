@@ -64,7 +64,7 @@ function App() {
     return (
         <div className="flex min-h-screen flex-col bg-gray-800 text-gray-100 dark:bg-gray-900 dark:text-gray-100">
             <main className="flex flex-grow flex-col items-center justify-center">
-                <h1 className="mb-8 bg-gradient-to-r from-teal-400 to-yellow-200 bg-clip-text text-4xl font-bold text-transparent md:text-7xl">
+                <h1 className="mb-8 bg-gradient-to-r from-teal-400 to-yellow-200 bg-clip-text text-center text-4xl font-bold text-transparent md:text-7xl">
                     {t("app.title")}
                 </h1>
                 <div className="mb-4 flex flex-col items-center justify-center">

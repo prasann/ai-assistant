@@ -122,9 +122,6 @@
     "cosmosHost": {
       "value": "${COSMOS_HOST}"
     },
-    "cosmosMasterKey": {
-      "value": "${COSMOS_MASTER_KEY}"
-    },
     "cosmosDatabase": {
       "value": "${COSMOS_DATABASE}"
     },

@@ -4,6 +4,8 @@ param databaseName string
 param containerName string
 param containerPartitionKey string = '/partitionKey'
 param containerThroughput int = 400
+param acaPrincipalId string
+param roleDefinitionId string
 
 resource cosmosDbAccount 'Microsoft.DocumentDB/databaseAccounts@2021-03-15' = {
   name: cosmosDbAccountName
@@ -47,6 +49,16 @@ resource container 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/container
     options: {
       throughput: containerThroughput
     }
+  }
+}
+
+resource assignment 'Microsoft.DocumentDB/databaseAccounts/sqlRoleAssignments@2024-05-15' = {
+  name: guid(roleDefinitionId, acaPrincipalId, cosmosDbAccount.id)
+  parent: cosmosDbAccount
+  properties: {
+    principalId: acaPrincipalId
+    roleDefinitionId: roleDefinitionId
+    scope: cosmosDbAccount.id
   }
 }
 

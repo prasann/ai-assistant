@@ -36,9 +36,5 @@ async def add_note_tool(
         "timestamp": datetime.now(timezone.utc).isoformat() 
     }
     
-    result = await container.upsert_item(note_entry)
-    
-    print("Note added successfully.")
-    print(result)
-    
+    await container.upsert_item(note_entry)
     return ToolResult("Note added successfully.", ToolResultDirection.TO_SERVER)

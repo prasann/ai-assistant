@@ -81,8 +81,6 @@ param googleProviderClientSecret string = ''
 param googleProviderClientId string = ''
 
 param cosmosHost string
-@secure()
-param cosmosMasterKey string
 param cosmosDatabase string
 param cosmosContainer string
 
@@ -228,7 +226,6 @@ module acaBackend 'core/host/container-app-upsert.bicep' = {
       // For using managed identity to access Azure resources. See https://github.com/microsoft/azure-container-apps/issues/442
       AZURE_CLIENT_ID: acaIdentity.outputs.clientId
       COSMOS_HOST: cosmosHost
-      COSMOS_MASTER_KEY: cosmosMasterKey
       COSMOS_DATABASE: cosmosDatabase
       COSMOS_CONTAINER: cosmosContainer
     }
@@ -424,26 +421,8 @@ module cosmosDbProject 'core/datastore/cosmos.bicep' = {
     containerName: 'aias${resourceToken}cn'
     containerPartitionKey: '/id'
     containerThroughput: 400
-  }
-}
-
-module cosmosDbRoleAssignmentReader 'core/security/role.bicep' =  {
-  scope: resourceGroup
-  name: 'cosmos-db-account-reader-role'
-  params: {
-    principalId: principalId
-    roleDefinitionId: 'fbdf93bf-df7d-467e-a4d2-9458aa1360c8'
-    principalType: 'ServicePrincipal'
-  }
-}
-
-module cosmosDbRoleAssignmentContributor 'core/security/role.bicep' =  {
-  scope: resourceGroup
-  name: 'cosmos-db-account-contributor-role'
-  params: {
-    principalId: principalId
-    roleDefinitionId: '5bd9cd88-fe45-4216-938b-f97437e15450'
-    principalType: 'ServicePrincipal'
+    acaPrincipalId: acaBackend.outputs.identityPrincipalId
+    roleDefinitionId: '/subscriptions/ed1f1918-2165-4549-8356-ab1736f12fe8/resourceGroups/rg-ai-assistant/providers/Microsoft.DocumentDB/databaseAccounts/aiasmv4r2nfwlx5w2/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002'
   }
 }
 
