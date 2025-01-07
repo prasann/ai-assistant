@@ -154,3 +154,5 @@ data/**/*.md5
 .DS_Store
 
 data/personal/
+
+**/sample.txt

@@ -118,6 +118,18 @@
     },
     "googleProviderClientSecret" : {
       "value": "${GOOGLE_PROVIDER_CLIENT_SECRET}" 
+    },
+    "cosmosHost": {
+      "value": "${COSMOS_HOST}"
+    },
+    "cosmosMasterKey": {
+      "value": "${COSMOS_MASTER_KEY}"
+    },
+    "cosmosDatabase": {
+      "value": "${COSMOS_DATABASE}"
+    },
+    "cosmosContainer": {
+      "value": "${COSMOS_CONTAINER}"
     }
   }
 }

@@ -30,3 +30,7 @@ Add-Content -Path $envFilePath -Value "AZURE_SEARCH_CONTENT_FIELD=$azureSearchCo
 Add-Content -Path $envFilePath -Value "AZURE_SEARCH_EMBEDDING_FIELD=$azureSearchEmbeddingField"
 Add-Content -Path $envFilePath -Value "AZURE_SEARCH_USE_VECTOR_QUERY=$azureSearchUseVectorQuery"
 Add-Content -Path $envFilePath -Value "AZURE_TENANT_ID=$azureTenantId"
+Add-Content -Path $envFilePath -Value "COSMOS_HOST=$(azd env get-value COSMOS_HOST)"
+Add-Content -Path $envFilePath -Value "COSMOS_MASTER_KEY=$(azd env get-value COSMOS_MASTER_KEY)"
+Add-Content -Path $envFilePath -Value "COSMOS_DATABASE=$(azd env get-value COSMOS_DATABASE)"
+Add-Content -Path $envFilePath -Value "COSMOS_CONTAINER=$(azd env get-value COSMOS_CONTAINER)"
