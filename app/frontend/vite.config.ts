@@ -15,6 +15,7 @@ export default defineConfig({
                 short_name: "Vasi",
                 description: "A Voice activated smart interface that helps you with your daily tasks.",
                 theme_color: "#000000",
+                background_color: "#000000",
                 icons: [
                     {
                         src: "./assets/pwa-192x192.png",
