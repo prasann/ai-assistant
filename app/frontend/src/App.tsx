@@ -89,7 +89,7 @@ function App() {
                 <GroundingFiles files={groundingFiles} onSelected={setSelectedFile} />
             </main>
 
-            <footer className="py-4 text-center">
+            <footer className="py-4 text-center text-sm italic text-gray-200">
                 <p>{t("app.footer")}</p>
             </footer>
 

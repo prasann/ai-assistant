@@ -12,8 +12,8 @@ export default defineConfig({
             includeAssets: ["favicon.svg", "favicon.ico", "robots.txt", "apple-touch-icon.png"],
             manifest: {
                 name: "Personal Assistant",
-                short_name: "BheemBoy",
-                description: " A personal assistant that helps you with your daily tasks.",
+                short_name: "Vasi",
+                description: "A Voice activated smart interface that helps you with your daily tasks.",
                 theme_color: "#000000",
                 icons: [
                     {

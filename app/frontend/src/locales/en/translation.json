@@ -1,13 +1,13 @@
 {
     "app": {
-        "title": "Prasanna's digital assistant",
-        "footer": "Built with Azure AI Search + Azure OpenAI",
+        "title": "Vasi - Your digital assistant",
+        "footer": "Voice activated smart interface (or something like that)",
         "stopRecording": "Stop recording",
         "startRecording": "Start recording",
         "stopConversation": "Stop conversation"
     },
     "status": {
-        "notRecordingMessage": "can converse in multiple languages!!",
+        "notRecordingMessage": "Guide You, I Will ✌️ ",
         "conversationInProgress": "Conversation in progress"
     },
     "history": {
