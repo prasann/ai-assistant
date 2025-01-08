@@ -45,7 +45,7 @@ async def create_app():
         credentials=llm_credential,
         endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
         deployment=os.environ["AZURE_OPENAI_REALTIME_DEPLOYMENT"],
-        voice_choice=os.environ.get("AZURE_OPENAI_REALTIME_VOICE_CHOICE") or "alloy"
+        voice_choice=os.environ.get("AZURE_OPENAI_REALTIME_VOICE_CHOICE") or "echo"
         )
     # 2. For taking notes, use the 'scribe' tool to record information concisely without losing data.
     current_directory = Path(__file__).parent
