@@ -28,6 +28,12 @@ export default defineConfig({
                         type: "image/png"
                     }
                 ]
+            },
+            workbox: {
+                navigateFallback: "/index.html",
+                navigateFallbackDenylist: [/\/\.auth\/.*/, /\/\.auth\//, /\/\.auth\/*/],
+                skipWaiting: true,
+                clientsClaim: true
             }
         }),
         viteStaticCopy({
