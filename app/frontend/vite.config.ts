@@ -31,7 +31,7 @@ export default defineConfig({
             },
             workbox: {
                 navigateFallback: "/index.html",
-                navigateFallbackDenylist: [/\/\.auth\/.*/, /\/\.auth\//, /\/\.auth\/*/],
+                navigateFallbackDenylist: [/\/\.auth\/.*/],
                 skipWaiting: true,
                 clientsClaim: true
             }
