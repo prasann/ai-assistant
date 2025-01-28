@@ -13,9 +13,5 @@
     "history": {
         "answerHistory": "回答履歴",
         "noHistory": "まだ履歴はありません。"
-    },
-    "groundingFiles": {
-        "title": "グラウンディング ファイル",
-        "description": "回答をグラウンディングするために使用されるファイル。"
     }
 }

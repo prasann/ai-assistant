@@ -13,9 +13,5 @@
     "history": {
         "answerHistory": "Answer history",
         "noHistory": "No history yet."
-    },
-    "groundingFiles": {
-        "title": "Grounding files",
-        "description": "Files used to ground the answers."
     }
 }

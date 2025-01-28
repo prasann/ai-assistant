@@ -3,20 +3,14 @@ import { Mic, MicOff } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import { Button } from "@/components/ui/button";
-import { GroundingFiles } from "@/components/ui/grounding-files";
-import GroundingFileView from "@/components/ui/grounding-file-view";
 import StatusMessage from "@/components/ui/status-message";
 
 import useRealTime from "@/hooks/useRealtime";
 import useAudioRecorder from "@/hooks/useAudioRecorder";
 import useAudioPlayer from "@/hooks/useAudioPlayer";
 
-import { GroundingFile, ToolResult } from "./types";
-
 function App() {
     const [isRecording, setIsRecording] = useState(false);
-    const [groundingFiles, setGroundingFiles] = useState<GroundingFile[]>([]);
-    const [selectedFile, setSelectedFile] = useState<GroundingFile | null>(null);
 
     const { startSession, addUserAudio, inputAudioBufferClear } = useRealTime({
         onWebSocketOpen: () => console.log("WebSocket connection opened"),
@@ -28,16 +22,8 @@ function App() {
         },
         onReceivedInputAudioBufferSpeechStarted: () => {
             stopAudioPlayer();
-        },
-        onReceivedExtensionMiddleTierToolResponse: message => {
-            const result: ToolResult = JSON.parse(message.tool_result);
-
-            const files: GroundingFile[] = result.sources.map(x => {
-                return { id: x.chunk_id, name: x.title, content: x.chunk };
-            });
-
-            setGroundingFiles(prev => [...prev, ...files]);
         }
+        // onReceivedExtensionMiddleTierToolResponse: (_message) => {}
     });
 
     const { reset: resetAudioPlayer, play: playAudio, stop: stopAudioPlayer } = useAudioPlayer();
@@ -86,14 +72,11 @@ function App() {
                     </Button>
                     <StatusMessage isRecording={isRecording} />
                 </div>
-                <GroundingFiles files={groundingFiles} onSelected={setSelectedFile} />
             </main>
 
             <footer className="py-4 text-center text-sm italic text-gray-200">
                 <p>{t("app.footer")}</p>
             </footer>
-
-            <GroundingFileView groundingFile={selectedFile} onClosed={() => setSelectedFile(null)} />
         </div>
     );
 }

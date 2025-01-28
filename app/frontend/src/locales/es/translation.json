@@ -13,9 +13,5 @@
     "history": {
         "answerHistory": "Historial de respuestas",
         "noHistory": "Aún no hay historial."
-    },
-    "groundingFiles": {
-        "title": "Archivos de fundamentación",
-        "description": "Archivos utilizados para fundamentar las respuestas."
     }
 }

@@ -13,9 +13,5 @@
     "history": {
         "answerHistory": "Historique des réponses",
         "noHistory": "Pas encore d'historique."
-    },
-    "groundingFiles": {
-        "title": "Fichiers d'ancrage",
-        "description": "Fichiers utilisés pour ancrer les réponses."
     }
 }
