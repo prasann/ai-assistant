@@ -14,4 +14,4 @@ azd env set AZURE_OPENAI_REALTIME_VOICE_CHOICE <echo, alloy, or shimmer>
 The default voice choice is `alloy`, but 2 other voices are available.
 
 Once you have set the voice choice, run `azd up` to apply the changes to the deployed app.
-If you've already run `azd up` and want to first preview the voice with the development server, then update your local `.env` file by running `./scripts/write_env.sh` or `pwsh ./scripts/write_env.ps1`, and then restart the development server.
+If you've already run `azd up` and want to first preview the voice with the development server, then update your local `.env` file by running `./scripts/write_env.sh`, and then restart the development server.

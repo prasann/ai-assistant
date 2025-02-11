@@ -1,3 +1,4 @@
+from typing import Any
 import uuid
 from azure.cosmos.aio import CosmosClient
 from rtmt import ToolResult, ToolResultDirection
@@ -24,7 +25,8 @@ async def add_note_tool(
     cosmos_client: CosmosClient,
     database_name: str,
     container_name: str,
-    note_content: str) -> ToolResult:
+    args: Any) -> ToolResult:
+    note_content = args["note"]
     print(f"Adding note: '{note_content}' to CosmosDB.")
     
     database = cosmos_client.get_database_client(database_name)
