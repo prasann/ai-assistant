@@ -24,7 +24,6 @@ from rich.logging import RichHandler
 def load_azd_env():
     """Get path to current azd env file and load file using python-dotenv"""
     result = subprocess.run("azd env list -o json", shell=True, capture_output=True, text=True)
-    print(result)
     if result.returncode != 0:
         raise Exception("Error loading azd env")
     env_json = json.loads(result.stdout)
@@ -64,9 +63,9 @@ def setup_index(azure_credential, index_name, azure_search_endpoint, azure_cosmo
             SearchIndex(
                 name=index_name,
                 fields=[
-                    SearchableField(name="id", key=True, analyzer_name="keyword", sortable=True),
-                    SearchableField(name="content"),
-                    SimpleField(name="timestamp", type=SearchFieldDataType.String, filterable=True),
+                    SimpleField(name="id", type=SearchFieldDataType.String, key=True),
+                    SearchableField(name="content", analyzer_name="standard.lucene", type=SearchFieldDataType.String),
+                    SimpleField(name="timestamp", type=SearchFieldDataType.DateTimeOffset, sortable=True),
                 ]
             )
         )
