@@ -9,6 +9,6 @@ Features:
 
 ## Architecture
 
-to be added
+![High level design](design.png)
 
 Bootstraped using [VoiceRAG](https://github.com/azure-samples/aisearch-openai-rag-audio)
