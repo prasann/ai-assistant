@@ -1,6 +1,7 @@
 import os
 from tools.personal_info_tool import personal_info_tool, personal_info_tool_schema
 from tools.notes_taking_tool import add_note_tool, note_taking_tool_schema
+from tools.search_notes_tool import search_notes_tool, search_notes_tool_schema
 from azure.core.credentials import AzureKeyCredential
 from azure.identity import DefaultAzureCredential
 from azure.search.documents.aio import SearchClient
@@ -29,4 +30,5 @@ def attach_rag_tools(rtmt: RTMiddleTier,
     cosmos_store_client = CosmosClient(url=cosmos_host, credential= credentials)
     
     rtmt.tools["personal_info"] = Tool(schema=personal_info_tool_schema, target=lambda args: personal_info_tool(search_client, semantic_configuration, identifier_field, content_field, embedding_field, use_vector_query, args))
+    rtmt.tools["search_notes"] = Tool(schema=search_notes_tool_schema, target=lambda args: search_notes_tool(search_client, semantic_configuration, "id", "content", args))
     rtmt.tools["add_notes"] = Tool(schema=note_taking_tool_schema, target=lambda args: add_note_tool(cosmos_store_client, cosmos_database_name, cosmos_container_name, args))
